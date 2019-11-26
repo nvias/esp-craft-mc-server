@@ -1,0 +1,5 @@
+.idea
+spigot-1.13.2/logs/*
+spigot-1.13.2/ops.json
+spigot-1.13.2/usercache.json
+spigot-1.13.2/whitelist.json
