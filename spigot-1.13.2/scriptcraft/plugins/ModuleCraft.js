@@ -7,9 +7,11 @@ var MQTT_SERVER = 'tcp://52.59.197.227:1884';
 
 var mqtt = require('sc-mqtt');
 var utils = require('utils');
+var espcraft = require('utils/espcraft');
 var JavaString = java.lang.String;
 
 //=============================== EVENT SETUP ==============================
+console.log(espcraft.ahoj);
 
 function getCoords(signFace, sign) {
   if (signFace === 'WEST') {
@@ -53,7 +55,7 @@ function sign_activation(event) {
         }
         echo(event.getPlayer(), 'Transmitter ACTIVATED!');
       } else {
-        echo(event.getPlayer(), 'Need Help? Yout need to type SEM/RECV | TAM/TRAN ;)'); // Write SEM/RECV | TAM/TRAN
+        echo(event.getPlayer(), 'Need Help? You need to type SEM/RECV | TAM/TRAN ;)'); // Write SEM/RECV | TAM/TRAN
       }
     }
 
