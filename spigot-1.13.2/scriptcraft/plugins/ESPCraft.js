@@ -7,23 +7,12 @@ var MQTT_SERVER = 'tcp://52.59.197.227:1884';
 
 var mqtt = require('sc-mqtt');
 var utils = require('utils');
-var espcraft = require('utils/espcraft');
+var espUtils = require('espcraft/utils');
 var JavaString = java.lang.String;
 
-//=============================== EVENT SETUP ==============================
-console.log(espcraft.ahoj);
+let getCoords = espUtils.getCoords;
 
-function getCoords(signFace, sign) {
-  if (signFace === 'WEST') {
-    return [sign.getX() + 1, sign.getY(), sign.getZ()];
-  } else if (signFace == "SOUTH") {
-    return [sign.getX(), sign.getY(), sign.getZ() - 1];
-  } else if (signFace == "NORTH") {
-    return [sign.getX(), sign.getY(), sign.getZ() + 1];
-  } else if (signFace == "EAST") {
-    return [sign.getX() - 1, sign.getY(), sign.getZ()];
-  }
-}
+//=============================== EVENT SETUP ==============================
 
 function sign_activation(event) {
   try {
