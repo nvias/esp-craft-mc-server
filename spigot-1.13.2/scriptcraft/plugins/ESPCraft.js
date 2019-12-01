@@ -10,7 +10,9 @@ var utils = require('utils');
 var espUtils = require('espcraft/utils');
 var JavaString = java.lang.String;
 
-let getCoords = espUtils.getCoords;
+var getCoords = espUtils.getCoords;
+var getTopic = espUtils.getTopic;
+var getPayload = espUtils.getPayload;
 
 //=============================== EVENT SETUP ==============================
 
@@ -26,7 +28,7 @@ function sign_activation(event) {
       var signCords = [sign.getX(), sign.getY(), sign.getZ()];
       var blockCords = [sign.getX(), sign.getY() - 1, sign.getZ()];
       var world = sign.getWorld();
-      var topic = getTopic(sign, event.getPlayer());
+      var topic = getTopic(sign, FEED_NAME);
       var payload = getPayload(sign);
 
       if (sign.getLine(0) === 'SEM' || sign.getLine(0) === 'RECV') {
@@ -56,22 +58,7 @@ function sign_activation(event) {
 
 events.playerInteract(sign_activation);
 
-//=============================== TOPIC DECODING ===============================
-
-function getTopic(sign, player) {
-
-  var module = sign.getLine(1), pin = sign.getLine(2);
-  var topic = FEED_NAME + module + '/' + pin;
-
-  console.log('Topic: ' + topic);
-  return topic;
-}
-
-function getPayload(sign) {
-  return sign.getLine(3);
-}
-
-function MQTTNode(blockCords, signCords, world, topic, payload) { // constructor function
+function MQTTNode(blockCords, signCords, world, topic, payload) {
 
   this.x = blockCords[0];
   this.y = blockCords[1];

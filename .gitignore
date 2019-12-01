@@ -3,3 +3,7 @@ spigot-1.13.2/logs/*
 spigot-1.13.2/ops.json
 spigot-1.13.2/usercache.json
 spigot-1.13.2/whitelist.json
+spigot-1.13.2/server.properties
+spigot-1.13.2/world
+spigot-1.13.2/world_the_end
+spigot-1.13.2/spigot.yml
