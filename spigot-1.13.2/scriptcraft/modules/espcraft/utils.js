@@ -1,3 +1,7 @@
+var config = require('espcraft/config');
+
+var FEED_NAME = config.FEED_NAME;
+
 module.exports = {
   getCoords: function (signFace, sign) {
     if (signFace === 'WEST') {
@@ -11,13 +15,12 @@ module.exports = {
     }
   },
 
-  getTopic: function (sign, FEED_NAME) {
+  getTopic: function (sign) {
     var module = sign.getLine(1);
     var pin = sign.getLine(2);
 
     var topic = FEED_NAME + module + '/' + pin;
 
-    console.log('Topic: ' + topic);
     return topic;
   },
 
