@@ -3,7 +3,7 @@
 //edit these to match your preferences
 
 var FEED_NAME = 'nvias/MC/';
-var MQTT_SERVER = 'tcp://localhost:1884';
+var MQTT_SERVER = 'tcp://52.59.197.227:1884';
 
 var mqtt = require('sc-mqtt');
 var utils = require('utils');
@@ -11,16 +11,16 @@ var JavaString = java.lang.String;
 
 //=============================== EVENT SETUP ==============================
 
-function getCoords(signFace, sign){
-    if(signFace === 'WEST'){
-      return [sign.getX() + 1, sign.getY(), sign.getZ()];
-    }else if(signFace == "SOUTH"){
-      return [sign.getX(), sign.getY(), sign.getZ() - 1];
-    }else if(signFace == "NORTH"){
-      return [sign.getX(), sign.getY(), sign.getZ() + 1];
-    }else if(signFace ==  "EAST"){
-      return [sign.getX() - 1 , sign.getY(), sign.getZ()];
-    }
+function getCoords(signFace, sign) {
+  if (signFace === 'WEST') {
+    return [sign.getX() + 1, sign.getY(), sign.getZ()];
+  } else if (signFace == "SOUTH") {
+    return [sign.getX(), sign.getY(), sign.getZ() - 1];
+  } else if (signFace == "NORTH") {
+    return [sign.getX(), sign.getY(), sign.getZ() + 1];
+  } else if (signFace == "EAST") {
+    return [sign.getX() - 1, sign.getY(), sign.getZ()];
+  }
 }
 
 function sign_activation(event) {
@@ -39,14 +39,14 @@ function sign_activation(event) {
       var payload = getPayload(sign);
 
       if (sign.getLine(0) === 'SEM' || sign.getLine(0) === 'RECV') {
-        if(clicked === 'WALL_SIGN'){
+        if (clicked === 'WALL_SIGN') {
           MQTTNode.prototype.createReceiver(getCoords(event.getBlockFace().toString(), sign), signCords, world, topic);
         } else {
           MQTTNode.prototype.createReceiver(blockCords, signCords, world, topic);
         }
         echo(event.getPlayer(), 'Receiver ACTIVATED!');
       } else if (sign.getLine(0) === 'TAM' || sign.getLine(0) === 'TRAN') {
-        if(clicked === 'WALL_SIGN'){
+        if (clicked === 'WALL_SIGN') {
           MQTTNode.prototype.createSender(getCoords(event.getBlockFace().toString(), sign), signCords, world, topic, payload);
         } else {
           MQTTNode.prototype.createSender(blockCords, signCords, world, topic, payload);
@@ -209,6 +209,4 @@ command('pub', function (parameters, player) {
   //    drone.place('1');
   //}
 });
-
-
 
